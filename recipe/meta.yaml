@@ -18,7 +18,7 @@ requirements:
   host:
     - pip
     - python {{ python_min }}
-    - setuptools >=45
+    - setuptools >=45,<63
     - setuptools-scm >=6,<7
   run:
     - django
