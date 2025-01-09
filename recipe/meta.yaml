@@ -6,23 +6,23 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/django-migrations-formatter-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/django-migrations-formatter-{{ version }}.tar.gz
   sha256: 229b14d5cdfb32d329437691854cea139aa493ad6cb6eaa0194227686b2f61d4
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
     - pip
-    - python >=3.7
-    - setuptools >=45
+    - python {{ python_min }}
+    - setuptools >=45,<63
     - setuptools-scm >=6,<7
   run:
     - django
-    - python >=3.7
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -31,6 +31,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/MarkusH/django-migrations-formatter
